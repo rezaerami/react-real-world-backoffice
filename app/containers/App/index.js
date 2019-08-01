@@ -14,7 +14,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -26,6 +31,7 @@ import PrivateRoutes from './PrivateRoutes';
 import routers from '../../constants/routers';
 
 import AuthContainer from '../AuthContainer';
+import ArticlesContainer from '../ArticlesContainer';
 
 /* eslint-disable react/prefer-stateless-function */
 class App extends Component {
@@ -51,10 +57,15 @@ class App extends Component {
                     render={props => (
                       <PanelLayout {...props}>
                         <Switch>
+                          <Redirect
+                            exact
+                            from={routers.base}
+                            to={`${routers.articles.list.path}/1`}
+                          />
                           <Route
                             exact
-                            path={routers.base}
-                            render={() => <h1>authenticated</h1>}
+                            path={routers.articles.index}
+                            component={ArticlesContainer}
                           />
                         </Switch>
                       </PanelLayout>
