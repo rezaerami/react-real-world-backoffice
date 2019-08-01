@@ -7,14 +7,21 @@ import authActions from '../../ducks/auth/actions';
 
 import Auth from '../../components/Auth';
 
-import { StyledLoginContainer } from './styles';
+import { StyledAuthContainer } from './styles';
 
 const AuthContainer = props => {
-  const { login, history, register } = props;
+  const {
+    login,
+    history,
+    register,
+    match: {
+      params: { step },
+    },
+  } = props;
   return (
-    <StyledLoginContainer>
-      <Auth login={login} register={register} history={history} />
-    </StyledLoginContainer>
+    <StyledAuthContainer>
+      <Auth login={login} register={register} history={history} step={step} />
+    </StyledAuthContainer>
   );
 };
 const mapStateToProps = () => ({});
@@ -24,6 +31,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 AuthContainer.propTypes = {
+  match: PropTypes.object,
   history: PropTypes.object,
   login: PropTypes.func,
   register: PropTypes.func,

@@ -1,5 +1,5 @@
 import Styled from 'styled-components';
 
-const StyledLoginContainer = Styled.div``;
+const StyledAuthContainer = Styled.div``;
 
-export { StyledLoginContainer };
+export { StyledAuthContainer };
