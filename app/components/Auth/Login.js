@@ -90,7 +90,7 @@ class Login extends Component {
     const errorsList = [];
     Object.keys(errors).forEach(error =>
       errorsList.push(
-        <p className="text-danger mt-2">
+        <p key={error} className="text-danger mt-2">
           <b>{error}: </b> <span>{errors[error]}</span>
         </p>,
       ),

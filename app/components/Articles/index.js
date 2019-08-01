@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import routers from '../../constants/routers';
 
-import ArticlesList from './List';
+import ArticlesList from './ArticlesList';
 
 import { StyledArticlesWrapper } from './styles';
 

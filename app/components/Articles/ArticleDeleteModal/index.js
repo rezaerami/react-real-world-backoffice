@@ -5,7 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import defaultMessages from '../../../constants/defaultMessages';
 import messages from '../../../containers/ArticlesContainer/messages';
 
-const DeleteArticleModal = props => {
+const ArticleDeleteModal = props => {
   const { onAccept, onDismiss, className } = props;
   return (
     <Modal isOpen toggle={onDismiss} className={className}>
@@ -23,12 +23,12 @@ const DeleteArticleModal = props => {
   );
 };
 
-DeleteArticleModal.propTypes = {
+ArticleDeleteModal.propTypes = {
   onAccept: PropTypes.func.isRequired,
   onDismiss: PropTypes.func.isRequired,
   className: PropTypes.string,
 };
-DeleteArticleModal.defaultProps = {
+ArticleDeleteModal.defaultProps = {
   className: '',
 };
-export default DeleteArticleModal;
+export default ArticleDeleteModal;

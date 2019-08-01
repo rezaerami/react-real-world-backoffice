@@ -11,7 +11,7 @@ import TextWrap from '../../Globals/TextWrap';
 import Icon from '../../Globals/Icon/';
 import DataTable from '../../Globals/DataTable';
 
-import DeleteArticleModal from '../Delete';
+import ArticleDeleteModal from '../ArticleDeleteModal';
 
 /* eslint-disable no-nested-ternary */
 class ArticlesTable extends Component {
@@ -126,7 +126,7 @@ class ArticlesTable extends Component {
       <Fragment>
         <DataTable data={data} headers={Object.keys(data[0])} />
         {!!articleToDelete && (
-          <DeleteArticleModal
+          <ArticleDeleteModal
             onAccept={this.handleDeleteArticle}
             onDismiss={() => this.handleSetArticleToDelete(null)}
           />
