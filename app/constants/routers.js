@@ -14,7 +14,7 @@ const routers = {
       index: '/articles/list/:param',
     },
     edit: {
-      base: '/articles/edit/',
+      path: '/articles/edit/',
       index: '/articles/edit/:param',
     },
   },

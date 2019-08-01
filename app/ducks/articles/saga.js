@@ -10,10 +10,8 @@ export function* getArticles(action) {
   } = action;
   try {
     const response = yield call(api.getArticles, { offset, limit });
-    const {
-      data: { articles },
-    } = response;
-    yield call(onSuccess, articles);
+    const { data } = response;
+    yield call(onSuccess, data);
   } catch (e) {
     yield call(onFailed, Helpers.promiseFailed(e));
   }

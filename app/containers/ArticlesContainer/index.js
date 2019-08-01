@@ -16,6 +16,7 @@ const ArticlesContainer = props => {
       params: { step, param },
     },
     getArticles,
+    deleteArticle,
   } = props;
   return (
     <StyledAuthContainer>
@@ -24,6 +25,7 @@ const ArticlesContainer = props => {
         step={step}
         param={param}
         getArticles={getArticles}
+        deleteArticle={deleteArticle}
       />
     </StyledAuthContainer>
   );
@@ -31,12 +33,14 @@ const ArticlesContainer = props => {
 const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
   getArticles: payload => dispatch(articleActions.getArticles(payload)),
+  deleteArticle: payload => dispatch(articleActions.deleteArticle(payload)),
 });
 
 ArticlesContainer.propTypes = {
   match: PropTypes.object,
   history: PropTypes.object,
   getArticles: PropTypes.func,
+  deleteArticle: PropTypes.func,
 };
 export default withRouter(
   connect(

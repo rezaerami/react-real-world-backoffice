@@ -35,10 +35,17 @@ class Articles extends Component {
   }
 
   renderSteps() {
-    const { step, param, getArticles } = this.props;
+    const { step, param, getArticles, deleteArticle, history } = this.props;
 
     const steps = {
-      list: <ArticlesList onGetArticles={getArticles} page={param} />,
+      list: (
+        <ArticlesList
+          history={history}
+          onGetArticles={getArticles}
+          deleteArticle={deleteArticle}
+          page={param}
+        />
+      ),
       add: <h1>add</h1>,
       edit: <h1>edit</h1>,
     };
@@ -60,6 +67,7 @@ Articles.propTypes = {
   step: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
   getArticles: PropTypes.func.isRequired,
+  deleteArticle: PropTypes.func.isRequired,
 };
 
 export default Articles;
