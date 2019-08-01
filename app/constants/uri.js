@@ -5,5 +5,10 @@ const URI = {
     INDEX: () => `${baseApi}/users`,
     LOGIN: () => `${baseApi}/users/login`,
   },
+  ARTICLES: {
+    INDEX: ({ offset = false }) =>
+      `${baseApi}/articles${offset ? `?offset=${offset}` : ''}`,
+    SINGLE: ({ slug }) => `${baseApi}/articles/${slug}`,
+  },
 };
 export default URI;

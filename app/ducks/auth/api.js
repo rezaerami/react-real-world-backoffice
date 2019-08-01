@@ -9,7 +9,7 @@ const api = {
     const config = axiosConfig({
       url,
       method: 'post',
-      withAuthApiToken: false,
+      withAuthorization: false,
       data: {
         user: {
           email,
@@ -24,7 +24,7 @@ const api = {
     const config = axiosConfig({
       url,
       method: 'post',
-      withAuthApiToken: false,
+      withAuthorization: false,
       data: {
         user: {
           email,
