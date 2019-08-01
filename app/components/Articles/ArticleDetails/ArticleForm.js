@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   Col,
   Form,
@@ -12,6 +13,7 @@ import {
 
 import messages from '../../../containers/ArticlesContainer/messages';
 import defaultMessages from '../../../constants/defaultMessages';
+import routers from '../../../constants/routers';
 
 const ArticleForm = props => {
   const {
@@ -38,6 +40,7 @@ const ArticleForm = props => {
             onChange={e => onSetTitle(e.target.value)}
             autoComplete="off"
             value={title}
+            required
           />
           <FormText className="help-block">
             {messages.details.title.tips}
@@ -56,6 +59,7 @@ const ArticleForm = props => {
             onChange={e => onSetDescription(e.target.value)}
             autoComplete="off"
             value={description}
+            required
           />
           <FormText className="help-block">
             {messages.details.description.tips}
@@ -86,8 +90,14 @@ const ArticleForm = props => {
             color="primary"
             onClick={onFormSubmit}
             disabled={!title || !description || !body || loading}
+            type="submit"
           >
             {defaultMessages.submit}
+          </Button>
+          <Button color="primary" outline type="button" className="ml-2">
+            <Link to={routers.articles.list.path}>
+              {defaultMessages.cancel}
+            </Link>
           </Button>
         </Col>
       </FormGroup>

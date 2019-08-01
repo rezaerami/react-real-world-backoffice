@@ -23,9 +23,9 @@ export function* getArticle(action) {
   try {
     const response = yield call(api.getArticle, { slug });
     const {
-      data: { articles },
+      data: { article },
     } = response;
-    yield call(onSuccess, articles[0]);
+    yield call(onSuccess, article);
   } catch (e) {
     yield call(onFailed, Helpers.promiseFailed(e));
   }
@@ -62,9 +62,9 @@ export function* editArticle(action) {
       tagList,
     });
     const {
-      data: { articles },
+      data: { article },
     } = response;
-    yield call(onSuccess, articles[0]);
+    yield call(onSuccess, article);
   } catch (e) {
     yield call(onFailed, Helpers.promiseFailed(e));
   }

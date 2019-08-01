@@ -44,13 +44,18 @@ class TagsList extends Component {
     tags.forEach(tag => {
       const active = selectedTags.includes(tag);
       tagsList.push(
-        <StyledTagsListItem active={active} onClick={() => onSelectTag(tag)}>
+        <StyledTagsListItem
+          className="mb-2"
+          key={tag}
+          onClick={() => onSelectTag(tag)}
+        >
           <Icon
             name={active ? 'check-square-o' : 'square-o'}
             size={30}
             modifier="font-awesome-icon"
+            className="text-primary"
           />
-          <span>{tag}</span>
+          <span className="pl-2">{tag}</span>
         </StyledTagsListItem>,
       );
     });

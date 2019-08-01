@@ -6,6 +6,7 @@ import ArticlesList from './ArticlesList';
 import ArticleAdd from './ArticleAdd';
 
 import { StyledArticlesWrapper } from './styles';
+import ArticleEdit from './ArticleEdit';
 
 class Articles extends Component {
   constructor(props) {
@@ -44,6 +45,8 @@ class Articles extends Component {
       history,
       addArticles,
       getTags,
+      editArticle,
+      getArticle,
     } = this.props;
 
     const steps = {
@@ -62,7 +65,15 @@ class Articles extends Component {
           onAddArticle={addArticles}
         />
       ),
-      edit: <h1>edit</h1>,
+      edit: (
+        <ArticleEdit
+          history={history}
+          slug={param}
+          onEditArticle={editArticle}
+          getTags={getTags}
+          onGetArticle={getArticle}
+        />
+      ),
     };
 
     return steps[step];
@@ -85,6 +96,8 @@ Articles.propTypes = {
   deleteArticle: PropTypes.func.isRequired,
   addArticles: PropTypes.func.isRequired,
   getTags: PropTypes.func.isRequired,
+  editArticle: PropTypes.func.isRequired,
+  getArticle: PropTypes.func.isRequired,
 };
 
 export default Articles;

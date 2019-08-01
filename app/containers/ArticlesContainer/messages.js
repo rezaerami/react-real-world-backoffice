@@ -11,6 +11,10 @@ export default defineMessages({
     title: 'Add new article',
     success: 'Added article successfully',
   },
+  edit: {
+    title: 'Edit new article',
+    success: 'Edited article successfully',
+  },
   delete: {
     title: 'Delete article',
     description: 'Are you sure to delete this article?',
