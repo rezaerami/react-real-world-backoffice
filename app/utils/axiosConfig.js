@@ -15,7 +15,7 @@ const axiosConfig = ({
       'accessToken',
     );
     if (accessToken && accessToken !== 'null') {
-      headers['X-AUTH-API-TOKEN'] = accessToken;
+      headers.Authorization = `Token ${accessToken}`;
     }
   }
   return {

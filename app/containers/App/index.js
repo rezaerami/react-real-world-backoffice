@@ -12,15 +12,25 @@
  */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
+import authSelectors from '../../ducks/auth/selectors';
+
+import PanelLayout from '../../components/Globals/Layouts/PanelLayout';
+import PrivateRoutes from './PrivateRoutes';
+
 import routers from '../../constants/routers';
+
+import AuthContainer from '../AuthContainer';
 
 /* eslint-disable react/prefer-stateless-function */
 class App extends Component {
   render() {
+    const { accessToken } = this.props;
     return (
       <Router>
         <div>
@@ -28,7 +38,28 @@ class App extends Component {
             render={({ location }) => {
               const routes = (
                 <Switch location={location}>
-                  <Route path={routers.base} render={() => <h1>Base</h1>} />
+                  <PrivateRoutes
+                    path={routers.auth.index}
+                    hasPermission={!accessToken}
+                    redirectTo={routers.base}
+                    component={AuthContainer}
+                  />
+                  <PrivateRoutes
+                    path={routers.base}
+                    hasPermission={!!accessToken}
+                    redirectTo={routers.auth.login}
+                    render={props => (
+                      <PanelLayout {...props}>
+                        <Switch>
+                          <Route
+                            exact
+                            path={routers.base}
+                            render={() => <h1>authenticated</h1>}
+                          />
+                        </Switch>
+                      </PanelLayout>
+                    )}
+                  />
                 </Switch>
               );
               return routes;
@@ -50,4 +81,12 @@ class App extends Component {
     );
   }
 }
-export default App;
+
+const mapStateToProps = state => ({
+  accessToken: authSelectors.accessToken(state),
+});
+
+App.propTypes = {
+  accessToken: PropTypes.string,
+};
+export default connect(mapStateToProps)(App);
