@@ -5,11 +5,11 @@ const axiosConfig = ({
   url,
   method,
   withCredentials = true,
-  withAuthApiToken = true,
+  withAuthorization = true,
   data = {},
   headers = {},
 }) => {
-  if (withAuthApiToken) {
+  if (withAuthorization) {
     const accessToken = Helpers.localStorageGetItem(
       'persist:auth',
       'accessToken',
