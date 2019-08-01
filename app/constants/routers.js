@@ -7,15 +7,15 @@ const routers = {
     register: '/auth/register',
   },
   articles: {
-    index: '/articles/:step?/:placeId?',
+    index: '/articles/:step?/:param?',
     add: '/articles/add',
     list: {
       path: '/articles/list',
-      index: '/articles/list/:page',
+      index: '/articles/list/:param',
     },
     edit: {
       base: '/articles/edit/',
-      index: '/articles/edit/:placeId',
+      index: '/articles/edit/:param',
     },
   },
 };

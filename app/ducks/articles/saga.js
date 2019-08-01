@@ -6,10 +6,10 @@ import Helpers from '../../utils/Helpers';
 
 export function* getArticles(action) {
   const {
-    payload: { offset, onSuccess, onFailed },
+    payload: { offset, limit, onSuccess, onFailed },
   } = action;
   try {
-    const response = yield call(api.getArticles, { offset });
+    const response = yield call(api.getArticles, { offset, limit });
     const {
       data: { articles },
     } = response;

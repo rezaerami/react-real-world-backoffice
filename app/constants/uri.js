@@ -6,8 +6,9 @@ const URI = {
     LOGIN: () => `${baseApi}/users/login`,
   },
   ARTICLES: {
-    INDEX: ({ offset = false }) =>
-      `${baseApi}/articles${offset ? `?offset=${offset}` : ''}`,
+    INDEX: () => `${baseApi}/articles`,
+    LIST: ({ offset, limit }) =>
+      `${baseApi}/articles?offset=${offset}&limit=${limit}`,
     SINGLE: ({ slug }) => `${baseApi}/articles/${slug}`,
   },
 };

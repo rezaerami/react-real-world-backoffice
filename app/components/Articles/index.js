@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import routers from '../../constants/routers';
 
+import ArticlesList from './List';
+
 import { StyledArticlesWrapper } from './styles';
 
 class Articles extends Component {
@@ -33,10 +35,10 @@ class Articles extends Component {
   }
 
   renderSteps() {
-    const { step } = this.props;
+    const { step, param, getArticles } = this.props;
 
     const steps = {
-      list: <h1>list</h1>,
+      list: <ArticlesList onGetArticles={getArticles} page={param} />,
       add: <h1>add</h1>,
       edit: <h1>edit</h1>,
     };
@@ -54,8 +56,10 @@ class Articles extends Component {
 }
 
 Articles.propTypes = {
+  param: PropTypes.string.isRequired,
   step: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
+  getArticles: PropTypes.func.isRequired,
 };
 
 export default Articles;

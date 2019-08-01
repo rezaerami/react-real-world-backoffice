@@ -4,8 +4,8 @@ import axiosConfig from '../../utils/axiosConfig';
 import URI from '../../constants/uri';
 
 const api = {
-  getArticles({ offset }) {
-    const url = URI.ARTICLES.INDEX({ offset });
+  getArticles({ offset, limit }) {
+    const url = URI.ARTICLES.LIST({ offset, limit });
     const config = axiosConfig({
       url,
       method: 'get',
