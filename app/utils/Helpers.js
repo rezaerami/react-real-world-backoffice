@@ -94,6 +94,7 @@ class Helpers {
   }
   /* eslint-disable prefer-destructuring */
   static promiseFailed(e) {
+    console.log('err', e);
     let message = defaultMessages.promiseFailed;
     let errors = null;
     if (e.response && e.response.data && e.response.data.errors) {

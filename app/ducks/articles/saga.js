@@ -74,7 +74,7 @@ export function* deleteArticle(action) {
     payload: { slug, onSuccess, onFailed },
   } = action;
   try {
-    yield call(api.editArticle, { slug });
+    yield call(api.deleteArticle, { slug });
     yield call(onSuccess);
   } catch (e) {
     yield call(onFailed, Helpers.promiseFailed(e));

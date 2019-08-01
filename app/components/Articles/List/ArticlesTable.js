@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button, ButtonGroup } from 'reactstrap';
@@ -10,6 +10,8 @@ import messages from '../../../containers/ArticlesContainer/messages';
 import TextWrap from '../../Globals/TextWrap';
 import Icon from '../../Globals/Icon/';
 import DataTable from '../../Globals/DataTable';
+
+import DeleteArticleModal from '../Delete';
 
 /* eslint-disable no-nested-ternary */
 class ArticlesTable extends Component {
@@ -57,7 +59,7 @@ class ArticlesTable extends Component {
         );
         this.handleSetArticleToDelete(null);
         this.handleToggleLoading();
-        toast.success(messages.deletedArticle);
+        toast.success(messages.delete.success);
       },
       onFailed: error => {
         toast.error(error.message);
@@ -118,8 +120,19 @@ class ArticlesTable extends Component {
   }
 
   render() {
+    const { articleToDelete } = this.state;
     const data = this.renderData();
-    return <DataTable data={data} headers={Object.keys(data[0])} />;
+    return (
+      <Fragment>
+        <DataTable data={data} headers={Object.keys(data[0])} />
+        {!!articleToDelete && (
+          <DeleteArticleModal
+            onAccept={this.handleDeleteArticle}
+            onDismiss={() => this.handleSetArticleToDelete(null)}
+          />
+        )}
+      </Fragment>
+    );
   }
 }
 
