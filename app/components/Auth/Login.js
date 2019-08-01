@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -141,7 +142,7 @@ class Login extends Component {
                         />
                       </InputGroup>
                       <Row>
-                        <Col xs="6">
+                        <Col xs="12">
                           <Button
                             type="submit"
                             color="primary"
@@ -150,6 +151,9 @@ class Login extends Component {
                           >
                             {messages.login}
                           </Button>
+                          <Link to={routers.auth.register} className="ml-4">
+                            {messages.signUp}
+                          </Link>
                         </Col>
                       </Row>
                       {errors && this.renderErrors()}
