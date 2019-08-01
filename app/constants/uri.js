@@ -11,5 +11,8 @@ const URI = {
       `${baseApi}/articles?offset=${offset}&limit=${limit}`,
     SINGLE: ({ slug }) => `${baseApi}/articles/${slug}`,
   },
+  TAGS: {
+    INDEX: () => `${baseApi}/tags`,
+  },
 };
 export default URI;

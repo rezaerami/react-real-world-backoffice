@@ -60,7 +60,7 @@ class App extends Component {
                           <Redirect
                             exact
                             from={routers.base}
-                            to={`${routers.articles.list.path}/1`}
+                            to={routers.articles.list.path}
                           />
                           <Route
                             exact

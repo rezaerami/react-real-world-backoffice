@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import routers from '../../constants/routers';
 
 import ArticlesList from './ArticlesList';
+import ArticleAdd from './ArticleAdd';
 
 import { StyledArticlesWrapper } from './styles';
 
@@ -35,7 +36,15 @@ class Articles extends Component {
   }
 
   renderSteps() {
-    const { step, param, getArticles, deleteArticle, history } = this.props;
+    const {
+      step,
+      param,
+      getArticles,
+      deleteArticle,
+      history,
+      addArticles,
+      getTags,
+    } = this.props;
 
     const steps = {
       list: (
@@ -46,7 +55,13 @@ class Articles extends Component {
           page={param}
         />
       ),
-      add: <h1>add</h1>,
+      add: (
+        <ArticleAdd
+          history={history}
+          getTags={getTags}
+          onAddArticle={addArticles}
+        />
+      ),
       edit: <h1>edit</h1>,
     };
 
@@ -68,6 +83,8 @@ Articles.propTypes = {
   history: PropTypes.object.isRequired,
   getArticles: PropTypes.func.isRequired,
   deleteArticle: PropTypes.func.isRequired,
+  addArticles: PropTypes.func.isRequired,
+  getTags: PropTypes.func.isRequired,
 };
 
 export default Articles;

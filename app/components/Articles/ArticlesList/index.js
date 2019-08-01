@@ -33,8 +33,12 @@ class ArticlesList extends Component {
     this.handlePaginate = this.handlePaginate.bind(this);
   }
   componentDidMount() {
-    const { page } = this.props;
-    this.handleFindOffset(page, this.handleGetArticles);
+    const { page, history } = this.props;
+    if (!page) {
+      history.replace(`${routers.articles.list.path}/1`);
+    } else {
+      this.handleFindOffset(page, this.handleGetArticles);
+    }
   }
   componentWillReceiveProps(nextProps) {
     const { page } = nextProps;

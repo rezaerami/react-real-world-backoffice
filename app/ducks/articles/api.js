@@ -44,7 +44,7 @@ const api = {
     });
     return axios(config);
   },
-  editdArticle({ slug, title, description, body, tagList }) {
+  editArticle({ slug, title, description, body, tagList }) {
     const url = URI.ARTICLES.SINGLE({ slug });
     const config = axiosConfig({
       url,

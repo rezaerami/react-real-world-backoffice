@@ -7,6 +7,10 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   title: 'Articles',
+  add: {
+    title: 'Add new article',
+    success: 'Added article successfully',
+  },
   delete: {
     title: 'Delete article',
     description: 'Are you sure to delete this article?',

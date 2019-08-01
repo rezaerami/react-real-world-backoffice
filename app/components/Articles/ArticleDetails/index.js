@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 import { toast } from 'react-toastify';
 
-import { StyledArticleDetailsWrapper } from './styles';
 import ArticleForm from './ArticleForm';
+import TagsList from '../../Globals/TagsList';
+
+import { StyledArticleDetailsWrapper } from './styles';
+import defaultMessages from '../../../constants/defaultMessages';
 
 class ArticleDetails extends Component {
   constructor(props) {
@@ -29,6 +32,7 @@ class ArticleDetails extends Component {
     this.handleSetSelectedTags = this.handleSetSelectedTags.bind(this);
     this.handleSelectTag = this.handleSelectTag.bind(this);
     this.handleAddTag = this.handleAddTag.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
   componentDidMount() {
     this.handleGetTags(() => {
@@ -39,7 +43,7 @@ class ArticleDetails extends Component {
     });
   }
   handleSetArticle(article) {
-    const { title, description, body, tagsList: selectedTags } = article;
+    const { title, description, body, tagList: selectedTags } = article;
     this.handleSetTitle(title);
     this.handleSetDescription(description);
     this.handleSetBody(body);
@@ -114,7 +118,7 @@ class ArticleDetails extends Component {
     } else {
       newTags = [...selectedTags, tag];
     }
-    this.handleSetTags(newTags);
+    this.handleSetSelectedTags(newTags);
   }
   handleAddTag(tag) {
     const { tags, selectedTags } = this.state;
@@ -122,9 +126,26 @@ class ArticleDetails extends Component {
       this.handleSetTags([...tags, tag]);
     }
     if (!selectedTags.includes(tag)) {
-      this.handleSetTags([...selectedTags, tag]);
+      this.handleSetSelectedTags([...selectedTags, tag]);
     }
   }
+
+  handleFormSubmit() {
+    const { title, description, body, selectedTags: tagList } = this.state;
+    const { onFormSubmit } = this.props;
+    if (title && description && body) {
+      this.handleToggleLoading();
+      onFormSubmit({
+        title,
+        description,
+        body,
+        tagList,
+        onSuccess: () => this.handleToggleLoading(),
+        onFailed: () => this.handleToggleLoading(),
+      });
+    }
+  }
+
   render() {
     const {
       loading,
@@ -134,7 +155,9 @@ class ArticleDetails extends Component {
       tags,
       selectedTags,
     } = this.state;
-    console.log(tags, selectedTags);
+    if (loading) {
+      return <p className="text-center">{defaultMessages.loading}</p>;
+    }
     return (
       <StyledArticleDetailsWrapper>
         <Row>
@@ -147,17 +170,18 @@ class ArticleDetails extends Component {
               onSetDescription={this.handleSetDescription}
               body={body}
               onSetBody={this.handleSetBody}
+              onFormSubmit={this.handleFormSubmit}
             />
           </Col>
           <Col md={3}>
-            {/* {tags.length && ( */}
-            {/* <TagsList */}
-            {/* items={tags} */}
-            {/* selectedItems={selectedTags} */}
-            {/* onAddTag={this.handleAddTag} */}
-            {/* onSelectTag={this.handleSelectTag} */}
-            {/* /> */}
-            {/* )} */}
+            {tags.length && (
+              <TagsList
+                tags={tags}
+                selectedTags={selectedTags}
+                onAddTag={this.handleAddTag}
+                onSelectTag={this.handleSelectTag}
+              />
+            )}
           </Col>
         </Row>
       </StyledArticleDetailsWrapper>
@@ -166,6 +190,7 @@ class ArticleDetails extends Component {
 }
 
 ArticleDetails.propTypes = {
+  onFormSubmit: PropTypes.func.isRequired,
   onGetTags: PropTypes.func.isRequired,
   article: PropTypes.object,
 };

@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import articleActions from '../../ducks/articles/actions';
+import tagsActions from '../../ducks/tags/actions';
 
 import Articles from '../../components/Articles';
 
@@ -17,6 +18,8 @@ const ArticlesContainer = props => {
     },
     getArticles,
     deleteArticle,
+    addArticles,
+    getTags,
   } = props;
   return (
     <StyledAuthContainer>
@@ -26,6 +29,8 @@ const ArticlesContainer = props => {
         param={param}
         getArticles={getArticles}
         deleteArticle={deleteArticle}
+        addArticles={addArticles}
+        getTags={getTags}
       />
     </StyledAuthContainer>
   );
@@ -34,6 +39,8 @@ const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
   getArticles: payload => dispatch(articleActions.getArticles(payload)),
   deleteArticle: payload => dispatch(articleActions.deleteArticle(payload)),
+  addArticles: payload => dispatch(articleActions.addArticle(payload)),
+  getTags: payload => dispatch(tagsActions.getTags(payload)),
 });
 
 ArticlesContainer.propTypes = {
@@ -41,6 +48,8 @@ ArticlesContainer.propTypes = {
   history: PropTypes.object,
   getArticles: PropTypes.func,
   deleteArticle: PropTypes.func,
+  addArticles: PropTypes.func,
+  getTags: PropTypes.func,
 };
 export default withRouter(
   connect(

@@ -7,5 +7,6 @@ const defaultMessages = {
   enterTag: 'Enter tag',
   submit: 'Submit',
   cancel: 'Cancel',
+  addTag: 'Add new tag',
 };
 export default defaultMessages;
