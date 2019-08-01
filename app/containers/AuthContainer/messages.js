@@ -10,4 +10,5 @@ export default defineMessages({
   description: 'Sign in to your account',
   email: 'Email',
   password: 'password',
+  loggedInSuccessfully: 'logged in successfully',
 });

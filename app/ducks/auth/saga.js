@@ -1,10 +1,9 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 
-import defaultMessages from '../../constants/defaultMessages';
-
 import types from './types';
 import actions from './actions';
 import api from './api';
+import Helpers from '../../utils/Helpers';
 
 export function* login(action) {
   const {
@@ -13,19 +12,14 @@ export function* login(action) {
   try {
     const response = yield call(api.login, { email, password });
     const {
-      data: { data },
+      data: { user },
     } = response;
-    const { user } = data;
     const { token, ...rest } = user;
     yield put(actions.setAccessToken(token));
     yield put(actions.setUser({ ...rest }));
-    yield call(onSuccess, data);
+    yield call(onSuccess, user);
   } catch (e) {
-    const message =
-      e.response && e.response.errors
-        ? e.response.errors
-        : defaultMessages.promiseFailed;
-    yield call(onFailed, message);
+    yield call(onFailed, Helpers.promiseFailed(e));
   }
 }
 
@@ -36,19 +30,14 @@ export function* register(action) {
   try {
     const response = yield call(api.register, { email, password, username });
     const {
-      data: { data },
+      data: { user },
     } = response;
-    const { user } = data;
     const { token, ...rest } = user;
     yield put(actions.setAccessToken(token));
     yield put(actions.setUser({ ...rest }));
-    yield call(onSuccess, data);
+    yield call(onSuccess, user);
   } catch (e) {
-    const message =
-      e.response && e.response.errors
-        ? e.response.errors
-        : defaultMessages.promiseFailed;
-    yield call(onFailed, message);
+    yield call(onFailed, Helpers.promiseFailed(e));
   }
 }
 

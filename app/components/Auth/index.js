@@ -36,11 +36,11 @@ class Auth extends Component {
   }
 
   renderSteps() {
-    const { step, login, register } = this.props;
+    const { step, login, register, history } = this.props;
 
     const steps = {
-      login: <Login onLogin={login} />,
-      register: <Register onRegister={register} />,
+      login: <Login onLogin={login} history={history} />,
+      register: <Register onRegister={register} history={history} />,
     };
 
     return steps[step];

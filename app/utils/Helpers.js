@@ -1,4 +1,5 @@
 import jwtDecode from 'jwt-decode';
+import defaultMessages from '../constants/defaultMessages';
 
 class Helpers {
   static stringReplace(find, replace, string) {
@@ -90,6 +91,25 @@ class Helpers {
       }
     });
     return formData;
+  }
+  /* eslint-disable prefer-destructuring */
+  static promiseFailed(e) {
+    let message = defaultMessages.promiseFailed;
+    let errors = null;
+    if (e.response && e.response.data && e.response.data.errors) {
+      if (e.response.data.errors.message) {
+        message = e.response.data.errors.message;
+        if (e.response.data.errors.error) {
+          errors = e.response.data.errors.error;
+        }
+      } else if (e.response.data.errors) {
+        errors = e.response.data.errors;
+      }
+    }
+    return {
+      message,
+      errors,
+    };
   }
 }
 export default Helpers;

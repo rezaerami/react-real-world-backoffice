@@ -11,8 +11,10 @@ const api = {
       method: 'post',
       withAuthApiToken: false,
       data: {
-        email,
-        password,
+        user: {
+          email,
+          password,
+        },
       },
     });
     return axios(config);
@@ -24,9 +26,11 @@ const api = {
       method: 'post',
       withAuthApiToken: false,
       data: {
-        email,
-        password,
-        username,
+        user: {
+          email,
+          password,
+          username,
+        },
       },
     });
     return axios(config);
