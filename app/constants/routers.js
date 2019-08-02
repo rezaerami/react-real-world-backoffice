@@ -5,6 +5,7 @@ const routers = {
     index: '/auth/:step',
     login: '/auth/login',
     register: '/auth/register',
+    logout: '/auth/logout',
   },
   articles: {
     index: '/articles/:step?/:param?',

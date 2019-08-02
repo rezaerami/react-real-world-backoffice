@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import * as router from 'react-router-dom';
 
 import { Container } from 'reactstrap';
 
 import {
-  AppAside,
   AppHeader,
   AppSidebar,
   AppSidebarFooter,
@@ -14,11 +14,11 @@ import {
   AppSidebarNav2 as AppSidebarNav,
 } from '@coreui/react';
 
-import DefaultAside from './DefaultAside';
 import DefaultHeader from './DefaultHeader';
+import navigations from '../../../../constants/navigations';
 
 const DefaultLayout = props => {
-  const { children } = props;
+  const { children, location } = props;
   return (
     <div className="app">
       <AppHeader fixed>
@@ -28,26 +28,27 @@ const DefaultLayout = props => {
         <AppSidebar fixed display="lg">
           <AppSidebarHeader />
           <AppSidebarForm />
-          <AppSidebarNav />
+          <AppSidebarNav
+            navConfig={navigations}
+            router={router}
+            location={location}
+          />
           <AppSidebarFooter />
           <AppSidebarMinimizer />
         </AppSidebar>
         <main className="main">
-          {/* <AppBreadcrumb /> */}
           <Container fluid>
             <div>{children}</div>
           </Container>
         </main>
-        <AppAside fixed>
-          <DefaultAside />
-        </AppAside>
       </div>
     </div>
   );
 };
 
 DefaultLayout.propTypes = {
+  location: PropTypes.object,
   children: PropTypes.node.isRequired,
 };
 
-export default DefaultLayout;
+export default router.withRouter(DefaultLayout);

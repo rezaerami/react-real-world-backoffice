@@ -8,5 +8,7 @@ const defaultMessages = {
   submit: 'Submit',
   cancel: 'Cancel',
   addTag: 'Add new tag',
+  logout: 'Logout',
+  welcomeUser: username => `Welcome dear ${username}`,
 };
 export default defaultMessages;
