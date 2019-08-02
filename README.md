@@ -1,1 +1,2 @@
-# react-real-world-backoffice
+# TripinoBackOffice
+Back-office for Article CRUD in real world

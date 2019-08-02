@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  nginx_production:
+    image: ${PRODUCTION_IMAGE:-registry.snappfood.ir/snappmart/snappmarket_pwaapp}
+    restart: always
+    ports:
+      - 8081:80
+  nginx_staging:
+    image: ${STAGING_IMAGE:-registry.snappfood.ir/snappmart/snappmarket_pwaapp}
+    restart: always
+    ports:
+      - 8080:80
