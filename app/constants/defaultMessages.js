@@ -10,5 +10,6 @@ const defaultMessages = {
   addTag: 'Add new tag',
   logout: 'Logout',
   welcomeUser: username => `Welcome dear ${username}`,
+  loggedOut: 'Logged out successfully',
 };
 export default defaultMessages;

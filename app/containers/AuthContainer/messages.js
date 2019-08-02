@@ -14,4 +14,8 @@ export default defineMessages({
   username: 'username',
   loggedInSuccessfully: 'logged in successfully',
   signUp: 'Sign Up',
+  logout: {
+    description: 'Signing out of your account',
+    success: 'Signed out successfully',
+  },
 });

@@ -44,12 +44,7 @@ class App extends Component {
             render={({ location }) => {
               const routes = (
                 <Switch location={location}>
-                  <PrivateRoutes
-                    path={routers.auth.index}
-                    hasPermission={!accessToken}
-                    redirectTo={routers.base}
-                    component={AuthContainer}
-                  />
+                  <Route path={routers.auth.index} component={AuthContainer} />
                   <PrivateRoutes
                     path={routers.base}
                     hasPermission={!!accessToken}
