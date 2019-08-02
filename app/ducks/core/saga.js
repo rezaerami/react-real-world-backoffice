@@ -3,6 +3,8 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import types from './types';
 import actions from './actions';
 
+import authActions from '../auth/actions';
+
 export function* initialize() {
   try {
     yield put(actions.loading());
@@ -17,6 +19,7 @@ export function* purge(action) {
     payload: { onSuccess },
   } = action;
   yield put(actions.clearCore());
+  yield put(authActions.clearAuth());
   yield call(onSuccess);
 }
 
