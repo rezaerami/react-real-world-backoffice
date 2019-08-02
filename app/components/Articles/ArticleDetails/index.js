@@ -7,7 +7,6 @@ import ArticleForm from './ArticleForm';
 import TagsList from '../../Globals/TagsList';
 
 import { StyledArticleDetailsWrapper } from './styles';
-import defaultMessages from '../../../constants/defaultMessages';
 
 class ArticleDetails extends Component {
   constructor(props) {
@@ -130,7 +129,10 @@ class ArticleDetails extends Component {
     }
   }
 
-  handleFormSubmit() {
+  handleFormSubmit(e) {
+    if (e) {
+      e.preventDefault();
+    }
     const { title, description, body, selectedTags: tagList } = this.state;
     const { onFormSubmit } = this.props;
     if (title && description && body) {
@@ -155,9 +157,6 @@ class ArticleDetails extends Component {
       tags,
       selectedTags,
     } = this.state;
-    if (loading) {
-      return <p className="text-center">{defaultMessages.loading}</p>;
-    }
     return (
       <StyledArticleDetailsWrapper>
         <Row>
