@@ -42,8 +42,10 @@ class ArticlesList extends Component {
   }
   componentWillReceiveProps(nextProps) {
     const { page } = nextProps;
-    const { page: currentPage } = this.props;
-    if (page !== currentPage) {
+    const { page: currentPage, history } = this.props;
+    if (!page) {
+      history.replace(`${routers.articles.list.path}/1`);
+    } else if (page !== currentPage) {
       this.handleFindOffset(page, this.handleGetArticles);
     }
   }
